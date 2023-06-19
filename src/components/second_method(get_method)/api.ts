@@ -41,8 +41,8 @@ what can we do to solve this?
 
 ==> There are basically 2 methods.
 
-1. Use the post response and add it to the todos in TodoApp
-2. make another get request after successfull post request.
+1. Use the post response and add it to the todos in TodoApp. (used here as primary basis)
+2. make another get request after successfull post request. (Written code in "second_method(get method)" file in components)
 
 One important thing here to understand is that,
 
@@ -54,6 +54,15 @@ Here mainly I had used the 1st method.
 strength -> Less API calls, cost optimization
 drawbacks -> lengthy code, scope left for optimization
 
+But You can check the 2nd Method as well :-
+
+********************************************************************************************
+
+To check the Second Method just do One change -->
+ In App.tsx,
+  instead of --> import TodoApp from './components/TodoApp';
+    Add      --> import TodoApp from './components/second_method(get_method)/TodoApp';
+
+********************************************************************************************
+
 */
-
-

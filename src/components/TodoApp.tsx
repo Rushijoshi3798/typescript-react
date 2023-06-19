@@ -8,14 +8,28 @@ const TodoApp = () => {
   const [todos, setTodos] = useState<Array<Todo>>([]);
   // OR
   // const [todos, setTodos] = useState<Todo[]>([]);
-  const [change, setChange] = useState<boolean>(false);
 
   const addNewTodo = (newTodo : Todo) => {
     setTodos([...todos, newTodo])
   }
 
-  const handleChange = () => {
-    setChange(prev => !prev)
+  const toggleTodoItem = (toggleTodo: Todo) => {
+
+    let newArr: Todo[] = [];
+    for(let i=0; i<todos.length; i++){
+      if(todos[i].id === toggleTodo.id){
+        todos[i].status = !todos[i].status;
+      }
+      newArr.push(todos[i]);
+    }
+    setTodos(newArr)
+  }
+
+  const deleteTodoItem = (id: number) => {
+   let newArr: Todo[] = todos.filter((el) => {
+      return el.id !== id
+    })
+    setTodos(newArr)
   }
 
   useEffect(() => {
@@ -23,14 +37,14 @@ const TodoApp = () => {
       setTodos(res);
       // console.log(res);
     });
-  }, [change]);
+  }, []);
 
   return (
     <div>
-      <h1>Todo App</h1>
+      <h1>Todo map</h1>
       <TodoInput addNewTodo={addNewTodo}/>
       {todos.length > 0 && todos.map((el) => (
-         <TodoItem key={el.id} {...el} handleChange={handleChange} />
+         <TodoItem key={el.id} {...el} toggleTodoItem={toggleTodoItem} deleteTodoItem={deleteTodoItem} />
       ))}
     </div>
   );
